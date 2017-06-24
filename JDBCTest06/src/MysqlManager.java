@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class DBmanager_mysql {
+public class MysqlManager {
 	static String driver =  "com.mysql.jdbc.Driver";
 	static String url = "jdbc:mysql://localhost:3306/jdbc?useSSL=false";
 	static String userName = "root";
@@ -18,7 +18,7 @@ public class DBmanager_mysql {
 	private String sname, sjobGrade, semail;
 	private int sno, department;
 	
-	public DBmanager_mysql(){
+	public MysqlManager(){
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userName, userPwd);
@@ -29,13 +29,13 @@ public class DBmanager_mysql {
 		
 	}
 	
-	public DBmanager_mysql(int sno){
+	public MysqlManager(int sno){
 		this();
 		
 		this.sno = sno;
 	}
 	
-	public DBmanager_mysql(String sname, String sjobGrade, String stemp, String semail){
+	public MysqlManager(String sname, String sjobGrade, String stemp, String semail){
 		this();
 		
 		this.sname = sname;
@@ -44,7 +44,7 @@ public class DBmanager_mysql {
 		this.semail = semail;
 	}
 	
-	public DBmanager_mysql(String sname, String sjobGrade, String stemp, String semail, int sno){
+	public MysqlManager(String sname, String sjobGrade, String stemp, String semail, int sno){
 		this();
 		this.sname = sname;
 		this.sjobGrade = sjobGrade;

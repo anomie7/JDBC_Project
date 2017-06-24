@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class JDBCTest06 extends DBmanager_mysql{
+public class JDBCTest06 extends MysqlManager{
 
 	public static void main(String[] args){
 		Scanner stdIn = new Scanner(System.in);
@@ -25,12 +25,12 @@ public class JDBCTest06 extends DBmanager_mysql{
 				str[3] = stdIn.next();
 				
 				String sql = "insert into employee(name, jobGrade, department, email) values(?,?,?,?)";
-				new DBmanager_mysql(str[0], str[1], str[2], str[3]).insert(sql);
+				new MysqlManager(str[0], str[1], str[2], str[3]).insert(sql);
 			}else if(command.equals("delete")){
 				String sql = "delete from employee where no=?";
 				System.out.println("사원 정보 삭제 하기");
 				System.out.print("사번 입력>");
-				new DBmanager_mysql(stdIn.nextInt()).delete(sql);
+				new MysqlManager(stdIn.nextInt()).delete(sql);
 			}else if(command.equals("update")){
 				String[] str = new String[4];
 				System.out.println("사원 정보 수정하기");
@@ -44,7 +44,7 @@ public class JDBCTest06 extends DBmanager_mysql{
 				str[3] = stdIn.next();
 				System.out.print("사번 입력>");
 				String sql = "update employee set name = ?, jobGrade = ?, department = ?, email = ?" + "where no = ?";
-				new DBmanager_mysql(str[0], str[1], str[2], str[3], stdIn.nextInt()).update(sql);
+				new MysqlManager(str[0], str[1], str[2], str[3], stdIn.nextInt()).update(sql);
 				
 			}else if(command.equals("exit")){
 				break;
