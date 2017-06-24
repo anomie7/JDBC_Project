@@ -4,21 +4,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class DBmanager_mysql {
-	static String driver =  "com.mysql.jdbc.Driver";
-	static String url = "jdbc:mysql://localhost:3306/jdbc?useSSL=false";
-	static String userName = "root";
-	static String userPwd = "1234";
+public class OracleManager {
+	static String driver =  "oracle.jdbc.driver.OracleDriver";
+	static String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
+	static String userName = "scott";
+	static String userPwd = "tiger";
 	
 	
 	private Connection con = null;
 	private PreparedStatement pstmt = null;
 	private Statement stmt = null;
 	private ResultSet rs = null;
-	private String sname, sjobGrade, semail;
-	private int sno, department;
+	private String ename, job, hiredate;
+	private int eno, manager, salary, commission, dno;
 	
-	public DBmanager_mysql(){
+	public OracleManager(){
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userName, userPwd);
@@ -29,28 +29,21 @@ public class DBmanager_mysql {
 		
 	}
 	
-	public DBmanager_mysql(int sno){
+	public OracleManager(int eno){
 		this();
 		
-		this.sno = sno;
+		this.eno = eno;
 	}
 	
-	public DBmanager_mysql(String sname, String sjobGrade, String stemp, String semail){
-		this();
-		
-		this.sname = sname;
-		this.sjobGrade = sjobGrade;
-		department = Integer.parseInt(stemp);
-		this.semail = semail;
-	}
-	
-	public DBmanager_mysql(String sname, String sjobGrade, String stemp, String semail, int sno){
-		this();
-		this.sname = sname;
-		this.sjobGrade = sjobGrade;
-		department = Integer.parseInt(stemp);
-		this.semail = semail;
-		this.sno = sno;
+	public OracleManager(int eno, String ename,String job,int manager, String hiredate, int salary,int commission,int dno){
+		this(eno);
+		this.ename = ename;
+		this.job = job;
+		this.manager = manager;
+		this.hiredate = hiredate;
+		this.salary = salary;
+		this.commission = commission;
+		this.dno = dno;
 	}
 	
 	void select(String sql){
@@ -58,15 +51,18 @@ public class DBmanager_mysql {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
 			
-			System.out.println("번호 \t 이름 \t 직책 \t 부서 \t 이메일");
-			System.out.println("--------------------------------------------");
+			System.out.println("사번 \t 이름 \t 직책 \t 상관 \t 입사일 \t 급여 \t 상여급 \t 부서번호 \t");
+			System.out.println("--------------------------------------------------");
 			
 			while(rs.next()){
 				System.out.print(rs.getInt(1) + "\t");
 				System.out.print(rs.getString(2) + "\t");
 				System.out.print(rs.getString(3) + "\t");
-				System.out.print(rs.getInt(4) + "\t");
-				System.out.print(rs.getString(5) + "\n");
+				System.out.print(rs.getInt(5) + "\t");
+				System.out.print(rs.getString(4) + "\t");
+				System.out.print(rs.getInt(5) + "\t");
+				System.out.print(rs.getInt(6) + "\t");
+				System.out.print(rs.getInt(7) + "\t");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,15 +86,20 @@ public class DBmanager_mysql {
 	void insert(String sql){
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, sname);
-			pstmt.setString(2, sjobGrade);
-			pstmt.setInt(3, department);
-			pstmt.setString(4, semail);
+			
+			pstmt.setInt(1, eno);
+			pstmt.setString(2, ename);
+			pstmt.setString(3, job);
+			pstmt.setInt(4, manager);
+			pstmt.setString(5, hiredate);
+			pstmt.setInt(6, salary);
+			pstmt.setInt(7, commission);
+			pstmt.setInt(8, dno);
 			
 			int rowCount = pstmt.executeUpdate();
 			
 			if(rowCount == 1){
-				System.out.println(sname + "이(가) 추가되었습니다.");
+				System.out.println(ename + "이(가) 추가되었습니다.");
 			}else{
 				System.out.println("데이터 추가에 실패하였습니다.");
 			}
@@ -121,12 +122,12 @@ public class DBmanager_mysql {
 	void delete(String sql){
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, sno);
+			pstmt.setInt(1, eno);
 			
 			int rowCount = pstmt.executeUpdate();
 			
 			if(rowCount == 1){
-				System.out.println(sno + "이 삭제되었습니다.");
+				System.out.println(eno + "이 삭제되었습니다.");
 			}else{
 				System.out.println("데이터 삭제에 실패하였습니다.");
 			}
@@ -150,16 +151,19 @@ public class DBmanager_mysql {
 		try{
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, sname);
-			pstmt.setString(2, sjobGrade);
-			pstmt.setInt(3, department);
-			pstmt.setString(4, semail);
-			pstmt.setInt(5, sno);
+			pstmt.setInt(1, eno);
+			pstmt.setString(2, ename);
+			pstmt.setString(3, job);
+			pstmt.setInt(4, manager);
+			pstmt.setString(5, hiredate);
+			pstmt.setInt(6, salary);
+			pstmt.setInt(7, commission);
+			pstmt.setInt(8, dno);
 			
 			int rowCount = pstmt.executeUpdate();
 			
 			if(rowCount == 1){
-				System.out.println(sno + "님의 정보가 수정되었습니다.");
+				System.out.println(ename + "님의 정보가 수정되었습니다.");
 			}else {
 				System.out.println("수정 실패");
 			}
