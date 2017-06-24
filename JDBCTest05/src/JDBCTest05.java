@@ -65,7 +65,6 @@ public class JDBCTest05 {
 				System.out.println(e.getMessage());
 			}
 		}
-		
 	}
 
 }
