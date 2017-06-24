@@ -51,7 +51,7 @@ public class OracleManager {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
 			
-			System.out.println("»ç¹ø \t ÀÌ¸§ \t Á÷Ã¥ \t »ó°ü \t ÀÔ»çÀÏ \t ±Þ¿© \t »ó¿©±Þ \t ºÎ¼­¹øÈ£ \t");
+			System.out.println("ï¿½ï¿½ï¿½ \t ï¿½Ì¸ï¿½ \t ï¿½ï¿½Ã¥ \t ï¿½ï¿½ï¿½ \t ï¿½Ô»ï¿½ï¿½ï¿½ \t ï¿½Þ¿ï¿½ \t ï¿½ó¿©±ï¿½ \t ï¿½Î¼ï¿½ï¿½ï¿½È£ \t");
 			System.out.println("--------------------------------------------------");
 			
 			while(rs.next()){
@@ -99,9 +99,9 @@ public class OracleManager {
 			int rowCount = pstmt.executeUpdate();
 			
 			if(rowCount == 1){
-				System.out.println(ename + "ÀÌ(°¡) Ãß°¡µÇ¾ú½À´Ï´Ù.");
+				System.out.println(ename + "ï¿½ï¿½(ï¿½ï¿½) ï¿½ß°ï¿½ï¿½Ç¾ï¿½ï¿½Ï´ï¿½.");
 			}else{
-				System.out.println("µ¥ÀÌÅÍ Ãß°¡¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½Ï´ï¿½.");
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -127,9 +127,9 @@ public class OracleManager {
 			int rowCount = pstmt.executeUpdate();
 			
 			if(rowCount == 1){
-				System.out.println(eno + "ÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.");
+				System.out.println(eno + "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½Ï´ï¿½.");
 			}else{
-				System.out.println("µ¥ÀÌÅÍ »èÁ¦¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½Ï´ï¿½.");
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -163,9 +163,9 @@ public class OracleManager {
 			int rowCount = pstmt.executeUpdate();
 			
 			if(rowCount == 1){
-				System.out.println(ename + "´ÔÀÇ Á¤º¸°¡ ¼öÁ¤µÇ¾ú½À´Ï´Ù.");
+				System.out.println(ename + "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½Ï´ï¿½.");
 			}else {
-				System.out.println("¼öÁ¤ ½ÇÆÐ");
+				System.out.println("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			}
 		}catch(Exception e){
 			System.out.println(e);
@@ -184,3 +184,4 @@ public class OracleManager {
 
 	}
 }
+
