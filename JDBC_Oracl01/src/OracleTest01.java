@@ -10,7 +10,7 @@ public class OracleTest01 extends OracleManager{
 			String command = stdIn.next();
 			
 			if(command.equals("list")){
-				String sql = "select eno, ename, job, manager,to_char(hiredate,'yyyy/mm/dd') , salary, commission, dno from employee";
+				String sql = "select eno, ename, job, manager,to_char(hiredate,'yyyy/mm/dd'), salary, commission, dno from employee";
 				new OracleTest01().select(sql);
 			}else if(command.equals("insert")){
 				System.out.println("사원 정보 입력하기");

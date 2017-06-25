@@ -32,7 +32,6 @@ public class OracleManager {
 	
 	public OracleManager(int sno){
 		this();
-		
 		this.sno = sno;
 	}
 	
