@@ -19,17 +19,17 @@ public class AddPane extends JPanel implements ActionListener, ItemListener{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel[] jp = new JPanel[6];
-	private JLabel[] jl = new JLabel[5];
-	private JTextField[] tf = new JTextField[5];
-	private JButton okb;
-	private JButton rsb;
+	private JPanel[] jp = new JPanel[5];
+	private JLabel[] jl = new JLabel[4];
+	private JComboBox<String> combo;
+	private JTextField[] tf = new JTextField[3];
+	private JButton okb, rsb;
 	private int department = 10;
 	
 	String[] caption = {"이름 :", "직 책 :", "메 일 :", "부 서 :"};
 	
 	public AddPane(){
-		setLayout(new GridLayout(6,1));
+		setLayout(new GridLayout(5,1));
 		EtchedBorder eb = new EtchedBorder();
 		setBorder(eb);
 		
@@ -50,7 +50,7 @@ public class AddPane extends JPanel implements ActionListener, ItemListener{
 		jp[i].add(jl[i]);
 		add(jp[i]);
 		
-		JComboBox<String> combo = new JComboBox<String>();
+		combo = new JComboBox<String>();
 		combo.addItem("부서번호를 선택하세요.");
 		for(int c = 1; c<=5; c++){
 			combo.addItem(Integer.toString(c*10));

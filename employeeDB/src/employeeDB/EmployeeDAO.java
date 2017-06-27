@@ -170,6 +170,225 @@ public class EmployeeDAO {
 		}
 		return retval;
 	}
+	//사번과 이름으로 수정
+	public EmployeeVO getUpdateCheck(EmployeeVO evo) throws Exception{
+		String dml = "update employee set jobGrade = ?, department = ?, email = ?" + "where no = ? and name = ?";
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		EmployeeVO retval = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(dml);
+			pstmt.setString(1, evo.getJobGrade());
+			pstmt.setInt(2, evo.getDepartment());
+			pstmt.setString(3, evo.getEmail());
+			pstmt.setInt(4, evo.getNo());
+			pstmt.setString(5, evo.getName());
+			
+			int i = pstmt.executeUpdate();
+			retval = new EmployeeVO();
+			retval.setStatus(i + "");
+		}catch(SQLException e){
+			System.out.println(e.getMessage());
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}finally{
+			try{
+				if(pstmt != null){
+					pstmt.close();
+				}
+				if(con != null){
+					con.close();
+				}
+			}catch(Exception e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return retval;
+	}
+	
+	//사번으로 수정
+	public EmployeeVO getUpdateNo(EmployeeVO evo) throws Exception{
+		String dml = "update employee set jobGrade = ?, department = ?, email = ? where no = ?";
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		EmployeeVO retval = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(dml);
+			pstmt.setString(1, evo.getJobGrade());
+			pstmt.setInt(2, evo.getDepartment());
+			pstmt.setString(3, evo.getEmail());
+			pstmt.setInt(4, evo.getNo());
+			
+			int i = pstmt.executeUpdate();
+			retval = new EmployeeVO();
+			retval.setStatus(i + "");
+		}catch(SQLException e){
+			System.out.println(e.getMessage());
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}finally{
+			try{
+				if(pstmt != null){
+					pstmt.close();
+				}
+				if(con != null){
+					con.close();
+				}
+			}catch(Exception e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return retval;
+	}
+	
+	//이름으로 수정
+	public EmployeeVO getUpdateName(EmployeeVO evo) throws Exception{
+		String dml = "update employee set jobGrade = ?, department = ?, email = ? " + "where name = ?";
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		EmployeeVO retval = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(dml);
+			pstmt.setString(1, evo.getJobGrade());
+			pstmt.setInt(2, evo.getDepartment());
+			pstmt.setString(3, evo.getEmail());
+			pstmt.setString(4, evo.getName());
+			
+			int i = pstmt.executeUpdate();
+			retval = new EmployeeVO();
+			retval.setStatus(i + "");
+		}catch(SQLException e){
+			System.out.println(e.getMessage());
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}finally{
+			try{
+				if(pstmt != null){
+					pstmt.close();
+				}
+				if(con != null){
+					con.close();
+				}
+			}catch(Exception e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return retval;
+	}
+	
+	//사번과 이름으로 삭제
+	public EmployeeVO getDeleteCheck(EmployeeVO evo) throws Exception{
+		String dml = "delete from employee where no = ? and name = ?";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		EmployeeVO retval = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			
+			pstmt = con.prepareStatement(dml);
+			pstmt.setInt(1, evo.getNo());
+			pstmt.setString(2, evo.getName());
+			
+			int i = pstmt.executeUpdate();
+			retval = new EmployeeVO();
+			retval.setStatus(i + "");
+		}catch(SQLException e){
+			System.out.println(e.getMessage());
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}finally{
+			try{
+				if(pstmt != null){
+					pstmt.close();
+				}
+				if(con != null){
+					con.close();
+				}
+			}catch(Exception e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return retval;
+	}
+	
+	//사번으로 삭제
+	public EmployeeVO getDeleteNo(EmployeeVO evo) throws Exception{
+		String dml = "delete from employee where no = ? ";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		EmployeeVO retval = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			
+			pstmt = con.prepareStatement(dml);
+			pstmt.setInt(1, evo.getNo());
+			
+			int i = pstmt.executeUpdate();
+			retval = new EmployeeVO();
+			retval.setStatus(i + "");
+		}catch(SQLException e){
+			System.out.println(e.getMessage());
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}finally{
+			try{
+				if(pstmt != null){
+					pstmt.close();
+				}
+				if(con != null){
+					con.close();
+				}
+			}catch(Exception e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return retval;
+	}
+	//이름으로 삭제 
+	public EmployeeVO getDeleteName(EmployeeVO evo) throws Exception{
+		String dml = "delete from employee where  name = ?";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		EmployeeVO retval = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			
+			pstmt = con.prepareStatement(dml);
+			pstmt.setString(1, evo.getName());
+			
+			int i = pstmt.executeUpdate();
+			retval = new EmployeeVO();
+			retval.setStatus(i + "");
+		}catch(SQLException e){
+			System.out.println(e.getMessage());
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}finally{
+			try{
+				if(pstmt != null){
+					pstmt.close();
+				}
+				if(con != null){
+					con.close();
+				}
+			}catch(Exception e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return retval;
+	}
 	
 	public ArrayList<EmployeeVO> getEmployeeTotal(){
 		ArrayList<EmployeeVO> list = new ArrayList<EmployeeVO>();
