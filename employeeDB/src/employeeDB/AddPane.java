@@ -44,6 +44,7 @@ public class AddPane extends JPanel implements ActionListener, ItemListener{
 			jp[i].add(tf[i]);
 			add(jp[i]);
 		}
+		
 		jp[i] = new JPanel();
 		jl[i] = new JLabel(caption[i]);
 		jp[i].add(jl[i]);
@@ -82,16 +83,17 @@ public class AddPane extends JPanel implements ActionListener, ItemListener{
 			}catch(Exception e){
 				System.out.println(e);
 			}
+		}
 			if(edvo != null){
 				JOptionPane.showMessageDialog(this, tf[0].getText() + "님이 성공적으로 추가됨");
-			}else if(ae_type.equals(rsb.getText()));
-			int size = caption.length;
-			
-			for(int i = 0; i< size-1;i++){
-				tf[i].setText(" ");
+			}else if(ae_type.equals(rsb.getText())){
+				int size = caption.length;
+				
+				for(int i = 0; i< size-1;i++){
+					tf[i].setText("");
+				}				
 			}
 		}
-	}
 	
 	public void itemStateChanged(ItemEvent ie){
 		if(ie.getStateChange() == ItemEvent.SELECTED){

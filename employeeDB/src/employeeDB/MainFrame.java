@@ -19,6 +19,7 @@ public class MainFrame extends JFrame{
 		tp = new JTabbedPane();
 		ap = new AddPane();
 		fp = new FindPane();
+		tpa = new TotalPane();
 		
 		tp.addTab("사원정보입력", ap);
 		tp.addTab("사원정보조회", fp);

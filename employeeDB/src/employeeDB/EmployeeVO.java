@@ -8,8 +8,7 @@ public class EmployeeVO {
 	private String email;
 	private String status;
 
-	public EmployeeVO() {
-	}
+	public EmployeeVO() {}
 
 	public EmployeeVO(int no, String name, String jobGrade, int department, String email, String status) {
 		this.no = no;

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class EmployeeDAO {
 	
 	public EmployeeVO getEmployeeRegiste(EmployeeVO evo) throws Exception{
-		String dml = "insert into employee(name, jobGrade, department, email values (?, ?, ?, ?)";
+		String dml = "insert into employee(name, jobGrade, department, email) values(?, ?, ?, ?)";
 		
 		Connection con = null;
 		PreparedStatement pstmt= null;
@@ -20,6 +20,7 @@ public class EmployeeDAO {
 			con = DBUtil.getConnection();
 			
 			pstmt = con.prepareStatement(dml);
+			
 			pstmt.setString(1, evo.getName());
 			pstmt.setString(2, evo.getJobGrade());
 			pstmt.setInt(3, evo.getDepartment());
@@ -27,7 +28,7 @@ public class EmployeeDAO {
 			
 			int i = pstmt.executeUpdate();
 			retval = new EmployeeVO();
-			retval.setStatus(i + " ");
+			retval.setStatus(i + "");
 		}catch(SQLException e){
 			System.out.println(e.getMessage());
 		}catch(Exception e){
@@ -44,7 +45,6 @@ public class EmployeeDAO {
 				System.out.println(e.getMessage());
 			}
 		}
-		
 		return retval;
 	}
 	
