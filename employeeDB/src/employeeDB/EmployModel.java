@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
+import employeeDB2.EmployeeDAO2;
+
 public class EmployModel extends AbstractTableModel{
 	/**
 	 * 
@@ -12,7 +14,7 @@ public class EmployModel extends AbstractTableModel{
 	Object[][] data;
 	Object[] columnName;
 	
-	EmployeeDAO emDao = new EmployeeDAO();
+	EmployeeDAO2 emDao = new EmployeeDAO2();
 	EmployeeVO emVo;
 	ArrayList<String> title;
 	ArrayList<EmployeeVO> list;

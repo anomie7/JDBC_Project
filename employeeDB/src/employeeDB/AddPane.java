@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
+import employeeDB2.EmployeeDAO2;
+
 public class AddPane extends JPanel implements ActionListener, ItemListener{
 	/**
 	 * 
@@ -72,13 +74,13 @@ public class AddPane extends JPanel implements ActionListener, ItemListener{
 	public void actionPerformed(ActionEvent ae){
 		String ae_type = ae.getActionCommand();
 		EmployeeVO evo = null;
-		EmployeeDAO edvo = null;
+		EmployeeDAO2 edvo = null;
 		if(ae_type.equals(okb.getText())){
 			try{
 				evo = new EmployeeVO(0, tf[0].getText(), tf[1].getText()
 									, department, tf[2].getText());
 				
-				edvo = new EmployeeDAO();
+				edvo = new EmployeeDAO2();
 				edvo.getEmployeeRegiste(evo);
 			}catch(Exception e){
 				System.out.println(e);

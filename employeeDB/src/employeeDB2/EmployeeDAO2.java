@@ -1,4 +1,4 @@
-package employeeDB;
+package employeeDB2;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,10 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class EmployeeDAO {
+import employeeDB.DBUtil;
+import employeeDB.EmployeeVO;
+
+public class EmployeeDAO2 {
 	
 	public EmployeeVO getEmployeeRegiste(EmployeeVO evo) throws Exception{
 		String dml = "insert into employee(name, jobGrade, department, email) values(?, ?, ?, ?)";
@@ -171,10 +174,8 @@ public class EmployeeDAO {
 		return retval;
 	}
 	//사번과 이름으로 수정
-	public EmployeeVO updateEmployee(int sno, String sname, String sjobGrade, 
-									int ndepartment, String semail) throws Exception{
-		String dml = "update employee set jobGrade = ?, department = ?, "
-				+ "email = ?" + "where no = ? and name = ?";
+	public EmployeeVO getUpdateCheck(EmployeeVO evo) throws Exception{
+		String dml = "update employee set jobGrade = ?, department = ?, email = ?" + "where no = ? and name = ?";
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -183,11 +184,87 @@ public class EmployeeDAO {
 		try{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(dml);
-			pstmt.setString(1, sjobGrade);
-			pstmt.setInt(2, ndepartment);
-			pstmt.setString(3, semail);
-			pstmt.setInt(4, sno);
-			pstmt.setString(5, sname);
+			pstmt.setString(1, evo.getJobGrade());
+			pstmt.setInt(2, evo.getDepartment());
+			pstmt.setString(3, evo.getEmail());
+			pstmt.setInt(4, evo.getNo());
+			pstmt.setString(5, evo.getName());
+			
+			int i = pstmt.executeUpdate();
+			retval = new EmployeeVO();
+			retval.setStatus(i + "");
+		}catch(SQLException e){
+			System.out.println(e.getMessage());
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}finally{
+			try{
+				if(pstmt != null){
+					pstmt.close();
+				}
+				if(con != null){
+					con.close();
+				}
+			}catch(Exception e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return retval;
+	}
+	
+	//사번으로 수정
+	public EmployeeVO getUpdateNo(EmployeeVO evo) throws Exception{
+		String dml = "update employee set jobGrade = ?, department = ?, email = ? where no = ?";
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		EmployeeVO retval = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(dml);
+			pstmt.setString(1, evo.getJobGrade());
+			pstmt.setInt(2, evo.getDepartment());
+			pstmt.setString(3, evo.getEmail());
+			pstmt.setInt(4, evo.getNo());
+			
+			int i = pstmt.executeUpdate();
+			retval = new EmployeeVO();
+			retval.setStatus(i + "");
+		}catch(SQLException e){
+			System.out.println(e.getMessage());
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}finally{
+			try{
+				if(pstmt != null){
+					pstmt.close();
+				}
+				if(con != null){
+					con.close();
+				}
+			}catch(Exception e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return retval;
+	}
+	
+	//이름으로 수정
+	public EmployeeVO getUpdateName(EmployeeVO evo) throws Exception{
+		String dml = "update employee set jobGrade = ?, department = ?, email = ? " + "where name = ?";
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		EmployeeVO retval = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(dml);
+			pstmt.setString(1, evo.getJobGrade());
+			pstmt.setInt(2, evo.getDepartment());
+			pstmt.setString(3, evo.getEmail());
+			pstmt.setString(4, evo.getName());
 			
 			int i = pstmt.executeUpdate();
 			retval = new EmployeeVO();
@@ -212,7 +289,7 @@ public class EmployeeDAO {
 	}
 	
 	//사번과 이름으로 삭제
-	public EmployeeVO deleteEmployee(int sno, String sname) throws Exception{
+	public EmployeeVO getDeleteCheck(EmployeeVO evo) throws Exception{
 		String dml = "delete from employee where no = ? and name = ?";
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -220,9 +297,10 @@ public class EmployeeDAO {
 		
 		try{
 			con = DBUtil.getConnection();
+			
 			pstmt = con.prepareStatement(dml);
-			pstmt.setInt(1, sno);
-			pstmt.setString(2, sname);
+			pstmt.setInt(1, evo.getNo());
+			pstmt.setString(2, evo.getName());
 			
 			int i = pstmt.executeUpdate();
 			retval = new EmployeeVO();

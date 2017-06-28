@@ -8,6 +8,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import employeeDB2.UpdatePane2;
+
 public class MainFrame extends JFrame{
 	/**
 	 * 
@@ -32,15 +34,15 @@ public class MainFrame extends JFrame{
 		tpa = new TotalPane();
 		
 		tp.addTab("사원정보입력", ap);
+		tp.addTab("사원정보조회", fp);
 		tp.addTab("사원정보수정", up);
 		tp.addTab("사원정보삭제", dp);
-		tp.addTab("사원정보조회", fp);
 		tp.addTab("사원전체보기", tpa);
 		
 		tp.setComponentAt(0, ap);
-		tp.setComponentAt(1, up);
-		tp.setComponentAt(2, dp);
-		tp.setComponentAt(3, fp);
+		tp.setComponentAt(1, fp);
+		tp.setComponentAt(2, up);
+		tp.setComponentAt(3, dp);
 		tp.setComponentAt(4, tpa);
 		
 		tp.addChangeListener(new ChangeListener(){
@@ -61,6 +63,7 @@ public class MainFrame extends JFrame{
 		setSize(d);
 		
 		pack(); //사이즈를 모아줌
+		setSize(600, 600);
 		setVisible(true);
 	}
 	public static void main(String[] args){
